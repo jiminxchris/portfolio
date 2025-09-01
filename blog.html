@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog - AI & Development Insights</title>
+    <meta name="description" content="AI, 머신러닝, 풀스택 개발에 대한 기술 블로그">
+    <meta name="keywords" content="AI, 머신러닝, 풀스택, 개발, 기술블로그">
+    <meta property="og:title" content="Tech Blog - AI & Development Insights">
+    <meta property="og:description" content="AI 개발자의 기술 인사이트와 개발 경험을 공유합니다">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .back-to-portfolio {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .header-content {
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .blog-nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .blog-category {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .blog-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .read-more {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #5a67d8;
+        }
+
+        /* Categories */
+        .categories-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .categories-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-item {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .category-count {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .back-to-portfolio {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Article View */
+        .article-view {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .article-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .article-content h2 {
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list {
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .back-to-list:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-to-portfolio">← 포트폴리오로 돌아가기</a>
+        <div class="container">
+            <div class="header-content">
+                <h1>🚀 Tech Blog</h1>
+                <p>AI, 머신러닝, 풀스택 개발의 인사이트를 공유합니다</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="blog-nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-link active" onclick="showCategory('all')">전체</a>
+                <a href="#" class="nav-link" onclick="showCategory('ai')">AI/ML</a>
+                <a href="#" class="nav-link" onclick="showCategory('fullstack')">풀스택</a>
+                <a href="#" class="nav-link" onclick="showCategory('embedded')">임베디드</a>
+                <a href="#" class="nav-link" onclick="showCategory('tutorial')">튜토리얼</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="categories-section">
+                <h2 class="categories-title">카테고리별 글 수</h2>
+                <div class="categories-grid">
+                    <div class="category-item" onclick="showCategory('ai')">
+                        <span class="category-count">12</span>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="category-item" onclick="showCategory('fullstack')">
+                        <span class="category-count">8</span>
+                        <span>풀스택</span>
+                    </div>
+                    <div class="category-item" onclick="showCategory('embedded')">
+                        <span class="category-count">6</span>
+                        <span>임베디드</span>
+                    </div>
+                    <div class="category-item" onclick="showCategory('tutorial')">
+                        <span class="category-count">10</span>
+                        <span>튜토리얼</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="blog-list">
+                <div class="blog-grid">
+                    <article class="blog-card" data-category="ai" onclick="showArticle(1)">
+                        <div class="blog-image">🤖</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">AI/ML</span>
+                                <span class="blog-date">📅 2024-01-15</span>
+                            </div>
+                            <h3 class="blog-title">딥러닝 모델 최적화를 위한 실전 가이드</h3>
+                            <p class="blog-excerpt">실제 프로덕션 환경에서 딥러닝 모델의 성능을 향상시키는 다양한 최적화 기법들을 소개합니다. 하이퍼파라미터 튜닝부터 모델 압축까지...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">딥러닝</span>
+                                <span class="blog-tag">최적화</span>
+                                <span class="blog-tag">성능튜닝</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="fullstack" onclick="showArticle(2)">
+                        <div class="blog-image">💻</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">풀스택</span>
+                                <span class="blog-date">📅 2024-01-10</span>
+                            </div>
+                            <h3 class="blog-title">React와 Node.js로 실시간 채팅앱 만들기</h3>
+                            <p class="blog-excerpt">Socket.io를 활용하여 실시간 채팅 애플리케이션을 구축하는 전체 과정을 단계별로 설명합니다. 프론트엔드부터 백엔드까지...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">React</span>
+                                <span class="blog-tag">Node.js</span>
+                                <span class="blog-tag">Socket.io</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="embedded" onclick="showArticle(3)">
+                        <div class="blog-image">🔧</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">임베디드</span>
+                                <span class="blog-date">📅 2024-01-05</span>
+                            </div>
+                            <h3 class="blog-title">Arduino를 활용한 IoT 센서 네트워크 구축</h3>
+                            <p class="blog-excerpt">여러 Arduino 보드를 연결하여 센서 데이터를 수집하고 클라우드로 전송하는 IoT 시스템을 구축하는 방법을 알아봅니다...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Arduino</span>
+                                <span class="blog-tag">IoT</span>
+                                <span class="blog-tag">센서</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="tutorial" onclick="showArticle(4)">
+                        <div class="blog-image">📚</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">튜토리얼</span>
+                                <span class="blog-date">📅 2024-01-01</span>
+                            </div>
+                            <h3 class="blog-title">Python으로 시작하는 머신러닝 입문</h3>
+                            <p class="blog-excerpt">머신러닝을 처음 시작하는 분들을 위한 기초 가이드입니다. Scikit-learn을 사용한 간단한 예제부터 시작해보세요...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Python</span>
+                                <span class="blog-tag">머신러닝</span>
+                                <span class="blog-tag">초보자</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="ai" onclick="showArticle(5)">
+                        <div class="blog-image">🧠</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">AI/ML</span>
+                                <span class="blog-date">📅 2023-12-28</span>
+                            </div>
+                            <h3 class="blog-title">컴퓨터 비전을 활용한 실시간 객체 감지</h3>
+                            <p class="blog-excerpt">OpenCV와 YOLO를 사용하여 웹캠을 통한 실시간 객체 감지 시스템을 구현하는 방법을 상세히 설명합니다...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">컴퓨터비전</span>
+                                <span class="blog-tag">YOLO</span>
+                                <span class="blog-tag">OpenCV</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="fullstack" onclick="showArticle(6)">
+                        <div class="blog-image">🌐</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">풀스택</span>
+                                <span class="blog-date">📅 2023-12-25</span>
+                            </div>
+                            <h3 class="blog-title">Docker를 활용한 개발환경 구축하기</h3>
+                            <p class="blog-excerpt">Docker와 Docker Compose를 사용하여 개발부터 배포까지 일관된 환경을 구축하는 실전 가이드를 제공합니다...</p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Docker</span>
+                                <span class="blog-tag">DevOps</span>
+                                <span class="blog-tag">배포</span>
+                            </div>
+                            <a href="#" class="read-more">자세히 보기 →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div id="article-view" class="article-view">
+                <button class="back-to-list" onclick="showBlogList()">← 목록으로 돌아가기</button>
+                <div class="article-header">
+                    <h1 class="article-title" id="article-title"></h1>
+                    <div class="blog-meta" id="article-meta"></div>
+                </div>
+                <div class="article-content" id="article-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            // 네비게이션 활성화
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 카드 필터링
+            const cards = document.querySelectorAll('.blog-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function showArticle(articleId) {
+            const articles = {
+                1: {
+                    title: "딥러닝 모델 최적화를 위한 실전 가이드",
+                    meta: '<span class="blog-category">AI/ML</span><span class="blog-date">📅 2024-01-15</span>',
+                    content: `
+                        <h2>서론</h2>
+                        <p>딥러닝 모델을 실제 서비스에 적용할 때 가장 중요한 것은 성능 최적화입니다. 이 글에서는 실전에서 활용할 수 있는 다양한 최적화 기법들을 소개합니다.</p>
+                        
+                        <h2>1. 하이퍼파라미터 튜닝</h2>
+                        <p>효과적인 하이퍼파라미터 튜닝을 위한 Grid Search, Random Search, 그리고 Bayesian Optimization 방법들을 비교하고 실전 예제를 통해 설명합니다.</p>
+                        
+                        <h2>2. 모델 압축 기법</h2>
+                        <p>Knowledge Distillation, Pruning, Quantization 등의 기법을 활용하여 모델 크기를 줄이면서도 성능을 유지하는 방법을 다룹니다.</p>
+                        
+                        <h2>3. 배치 최적화</h2>
+                        <p>배치 크기 조정과 Mixed Precision 훈련을 통한 메모리 효율성 향상 방법을 실제 코드 예제와 함께 설명합니다.</p>
+                        
+                        <p>이러한 최적화 기법들을 적절히 조합하면 실제 서비스 환경에서도 안정적이고 빠른 딥러닝 모델을 구축할 수 있습니다.</p>
+                    `
+                },
+                2: {
+                    title: "React와 Node.js로 실시간 채팅앱 만들기",
+                    meta: '<span class="blog-category">풀스택</span><span class="blog-date">📅 2024-01-10</span>',
+                    content: `
+                        <h2>프로젝트 개요</h2>
+                        <p>Socket.io를 활용하여 실시간 양방향 통신이 가능한 채팅 애플리케이션을 구축해보겠습니다.</p>
+                        
+                        <h2>백엔드 구성 (Node.js + Express)</h2>
+                        <p>Express 서버 설정과 Socket.io 연동 방법을 단계별로 설명합니다. <code>npm install express socket.io</code></p>
+                        
+                        <h2>프론트엔드 구성 (React)</h2>
+                        <p>React 컴포넌트 구조와 Socket.io-client를 사용한 실시간 데이터 처리 방법을 다룹니다.</p>
+                        
+                        <h2>실시간 기능 구현</h2>
+                        <p>메시지 전송, 사용자 접속/해제 알림, 온라인 사용자 목록 표시 등의 핵심 기능을 구현합니다.</p>
+                        
+                        <h2>배포 및 성능 최적화</h2>
+                        <p>Heroku를 통한 배포와 대용량 접속자 처리를 위한 Redis 적용 방법을 설명합니다.</p>
+                    `
+                }
+                // 다른 글들도 여기에 추가...
+            };
+
+            const article = articles[articleId];
+            if (article) {
+                document.getElementById('article-title').textContent = article.title;
+                document.getElementById('article-meta').innerHTML = article.meta;
+                document.getElementById('article-content').innerHTML = article.content;
+                
+                document.getElementById('blog-list').style.display = 'none';
+                document.getElementById('article-view').style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function showBlogList() {
+            document.getElementById('blog-list').style.display = 'block';
+            document.getElementById('article-view').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
+        // 페이지 로드시 전체 카테고리 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            showCategory('all');
+        });
+    </script>
+</body>
+</html>
