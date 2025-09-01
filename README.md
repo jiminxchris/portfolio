@@ -1,6 +1,3 @@
-# portfolio
-portfolio for chris Lin
-
 # 🚀 AI Developer Portfolio
 
 인공지능, 풀스택, 임베디드 개발 전문가의 포트폴리오 사이트입니다.
