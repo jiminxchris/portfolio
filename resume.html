@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - AI & Full Stack Developer</title>
+    <meta name="description" content="AI 개발자 및 기술 강사의 상세 이력서">
+    <meta name="keywords" content="이력서, AI개발자, 풀스택개발자, 임베디드">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .resume-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-to-portfolio {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-section {
+            padding-top: 1rem;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experience-item,
+        .education-item,
+        .project-item {
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid #e0e0e0;
+            position: relative;
+        }
+
+        .experience-item::before,
+        .education-item::before,
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .item-company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-period {
+            color: #666;
+            font-size: 0.9rem;
+            background: #f0f0f0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .item-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .item-description ul {
+            margin: 0.5rem 0 0 1rem;
+        }
+
+        .item-description li {
+            margin-bottom: 0.3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .achievements-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #28a745;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 0.3rem;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .certification-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            text-align: center;
+        }
+
+        .cert-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .cert-date {
+            color: #ffc107;
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .language-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+            min-width: 150px;
+        }
+
+        .language-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .language-level {
+            color: #17a2b8;
+            font-weight: 600;
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .back-to-portfolio {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .languages-list {
+                flex-direction: column;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .back-to-portfolio,
+            .print-button {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .resume-header {
+                background: #333 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume-header">
+            <a href="index.html" class="back-to-portfolio">← 포트폴리오로 돌아가기</a>
+            <div class="profile-section">
+                <div class="profile-image">👨‍💻</div>
+                <h1 class="name">김개발자</h1>
+                <p class="title">AI & Full Stack Developer | Tech Educator</p>
+                <div class="contact-info">
+                    <div class="contact-item">📧 developer@email.com</div>
+                    <div class="contact-item">📱 010-1234-5678</div>
+                    <div class="contact-item">🌐 github.com/username</div>
+                    <div class="contact-item">💼 linkedin.com/in/username</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="section">
+            <h2 class="section-title">🎯 전문분야 요약</h2>
+            <p>5년 이상의 AI 개발 경험과 풀스택 개발 역량을 바탕으로 임베디드 시스템부터 클라우드 서비스까지 End-to-End 솔루션을 제공합니다. 현재 AI 및 데이터 분석 강의를 통해 기술 교육에도 힘쓰고 있으며, 실무와 교육을 연계한 실용적인 기술 전파를 목표로 하고 있습니다.</p>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="section">
+            <h2 class="section-title">💼 경력사항</h2>
+            
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">AI 기술 강사</div>
+                        <div class="item-company">테크교육원</div>
+                    </div>
+                    <div class="item-period">2023.03 - 현재</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>AI 및 데이터 분석 강의 설계 및 진행 (월 평균 80시간)</li>
+                        <li>머신러닝, 딥러닝, 컴퓨터 비전 커리큘럼 개발</li>
+                        <li>실무 프로젝트 기반 교육과정 운영으로 취업률 85% 달성</li>
+                        <li>Python, TensorFlow, PyTorch를 활용한 실습 중심 교육</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">수석 AI 엔지니어</div>
+                        <div class="item-company">(주)스마트솔루션</div>
+                    </div>
+                    <div class="item-period">2021.01 - 2023.02</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>컴퓨터 비전 기반 품질 검사 시스템 개발 및 운영</li>
+                        <li>실시간 객체 감지 알고리즘 최적화로 처리 속도 40% 향상</li>
+                        <li>AI 모델 배포 파이프라인 구축 (Docker, Kubernetes 활용)</li>
+                        <li>팀 리드로서 5명의 개발자 관리 및 프로젝트 진행</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">풀스택 개발자</div>
+                        <div class="item-company">(주)혁신기술</div>
+                    </div>
+                    <div class="item-period">2019.03 - 2020.12</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>React + Node.js 기반 데이터 분석 대시보드 개발</li>
+                        <li>RESTful API 설계 및 구현, PostgreSQL 데이터베이스 최적화</li>
+                        <li>AWS 클라우드 인프라 구축 및 CI/CD 파이프라인 구성</li>
+                        <li>마이크로서비스 아키텍처 적용으로 시스템 확장성 개선</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">임베디드 시스템 개발자</div>
+                        <div class="item-company">(주)IoT테크</div>
+                    </div>
+                    <div class="item-period">2018.01 - 2019.02</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>Arduino, Raspberry Pi를 활용한 IoT 디바이스 펌웨어 개발</li>
+                        <li>센서 데이터 수집 및 무선 통신 모듈 구현</li>
+                        <li>실시간 모니터링 시스템 구축으로 장비 가동률 20% 향상</li>
+                        <li>C/C++ 기반 저전력 임베디드 소프트웨어 최적화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <h2 class="section-title">🎓 학력</h2>
+            
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">컴퓨터공학과 석사</div>
+                        <div class="item-company">한국대학교 대학원</div>
+                    </div>
+                    <div class="item-period">2016.03 - 2018.02</div>
+                </div>
+                <div class="item-description">
+                    <strong>논문:</strong> "딥러닝 기반 실시간 이미지 분할 알고리즘 최적화 연구"<br>
+                    <strong>GPA:</strong> 4.2/4.5 (Magna Cum Laude)
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">전자공학과 학사</div>
+                        <div class="item-company">한국대학교</div>
+                    </div>
+                    <div class="item-period">2012.03 - 2016.02</div>
+                </div>
+                <div class="item-description">
+                    <strong>전공:</strong> 전자공학, 부전공: 컴퓨터공학<br>
+                    <strong>GPA:</strong> 4.0/4.5 (Summa Cum Laude)<br>
+                    <strong>졸업작품:</strong> "스마트홈 자동화 시스템 설계 및 구현"
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section">
+            <h2 class="section-title">🛠️ 기술 스택</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>AI/ML</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">TensorFlow</span>
+                        <span class="skill-item">PyTorch</span>
+                        <span class="skill-item">OpenCV</span>
+                        <span class="skill-item">Scikit-learn</span>
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">NumPy</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>웹 개발</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">Express</span>
+                        <span class="skill-item">Django</span>
+                        <span class="skill-item">Flask</span>
+                        <span class="skill-item">HTML/CSS</span>
+                        <span class="skill-item">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>데이터베이스</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">PostgreSQL</span>
+                        <span class="skill-item">MongoDB</span>
+                        <span class="skill-item">Redis</span>
+                        <span class="skill-item">MySQL</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>임베디드</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">C/C++</span>
+                        <span class="skill-item">Arduino</span>
+                        <span class="skill-item">Raspberry Pi</span>
+                        <span class="skill-item">RTOS</span>
+                        <span class="skill-item">IoT</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>DevOps</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Kubernetes</span>
+                        <span class="skill-item">AWS</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">CI/CD</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>데이터 분석</h4>
+                    <div class="skill-items">
+                        <span class="skill-item">Jupyter</span>
+                        <span class="skill-item">Matplotlib</span>
+                        <span class="skill-item">Seaborn</span>
+                        <span class="skill-item">Tableau</span>
+                        <span class="skill-item">SQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+            <h2 class="section-title">🚀 주요 프로젝트</h2>
+            
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">AI 기반 실시간 품질 검사 시스템</div>
+                    <div class="item-period">2022.06 - 2022.12</div>
+                </div>
+                <div class="item-description">
+                    제조업체를 위한 컴퓨터 비전 기반 실시간 불량품 검출 시스템 개발
+                    <ul>
+                        <li>YOLOv5 모델을 커스터마이징하여 99.2% 정확도 달성</li>
+                        <li>Edge Computing 환경에서 실시간 추론 최적화 (50ms 이하)</li>
+                        <li>React + Flask 기반 모니터링 대시보드 개발</li>
+                        <li>불량률 30% 감소 및 검사 시간 80% 단축 효과</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">스마트 농업 IoT 플랫폼</div>
+                    <div class="item-period">2021.03 - 2021.08</div>
+                </div>
+                <div class="item-description">
+                    농업 환경 모니터링 및 자동 제어를 위한 종합 IoT 솔루션
+                    <ul>
+                        <li>다중 센서 데이터 수집 및 LoRa 무선 통신 구현</li>
+                        <li>머신러닝 기반 작물 성장 예측 모델 개발</li>
+                        <li>Node.js + MongoDB 백엔드 시스템 구축</li>
+                        <li>농작물 수확량 15% 증가 및 물 사용량 25% 절약</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">실시간 데이터 분석 대시보드</div>
+                    <div class="item-period">2020.01 - 2020.06</div>
+                </div>
+                <div class="item-description">
+                    대용량 데이터 실시간 처리 및 시각화 플랫폼 구축
+                    <ul>
+                        <li>Apache Kafka를 활용한 실시간 데이터 스트리밍 처리</li>
+                        <li>React + D3.js 기반 인터랙티브 차트 구현</li>
+                        <li>Redis 캐싱으로 응답 속도 70% 향상</li>
+                        <li>마이크로서비스 아키텍처로 확장성 확보</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="section">
+            <h2 class="section-title">📜 자격증</h2>
+            <div class="certifications-grid">
+                <div class="certification-item">
+                    <div class="cert-name">AWS Certified Solutions Architect</div>
+                    <div class="cert-issuer">Amazon Web Services</div>
+                    <div class="cert-date">2022.03</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-name">정보처리기사</div>
+                    <div class="cert-issuer">한국산업인력공단</div>
+                    <div class="cert-date">2018.05</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-name">ADsP (데이터분석 준전문가)</div>
+                    <div class="cert-issuer">한국데이터산업진흥원</div>
+                    <div class="cert-date">2019.12</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-name">TensorFlow Developer Certificate</div>
+                    <div class="cert-issuer">Google</div>
+                    <div class="cert-date">2021.08</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages Section -->
+        <div class="section">
+            <h2 class="section-title">🌐 어학능력</h2>
+            <div class="languages-list">
+                <div class="language-item">
+                    <div class="language-name">한국어</div>
+                    <div class="language-level">원어민</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">영어</div>
+                    <div class="language-level">상급 (TOEIC 920)</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">일본어</div>
+                    <div class="language-level">중급 (JLPT N2)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="section">
+            <h2 class="section-title">🏆 수상경력 & 성과</h2>
+            <ul class="achievements-list">
+                <li class="achievement-item">
+                    <div class="achievement-title">우수 강사상</div>
+                    테크교육원 2023년 최우수 강사 선정 (수강생 만족도 4.8/5.0)
+                </li>
+                <li class="achievement-item">
+                    <div class="achievement-title">AI 해커톤 대상</div>
+                    2022 AI 혁신 챌린지 대상 수상 - "의료 영상 진단 AI 시스템"
+                </li>
+                <li class="achievement-item">
+                    <div class="achievement-title">특허 출원</div>
+                    "딥러닝 기반 실시간 품질 검사 방법" 특허 출원 (출원번호: 10-2022-0123456)
+                </li>
+                <li class="achievement-item">
+                    <div class="achievement-title">오픈소스 기여</div>
+                    TensorFlow, OpenCV 등 주요 오픈소스 프로젝트 기여자 (GitHub Stars 1,200+)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="window.print()" title="인쇄하기">🖨️</button>
+</body>
+</html>
