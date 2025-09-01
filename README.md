@@ -14,6 +14,7 @@
 
 ## 🌐 Live Demo
 [포트폴리오 보기](https://jiminxchris.github.io/portfolio)
+[MBTI 테스트](https://jiminxchris.github.io/portfolio/mbti-test.html)
 
 ## 📞 Contact
 - Email: jiminxchris@gmail.com
