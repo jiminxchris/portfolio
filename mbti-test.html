@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MZ세대 MBTI 테스트 🔥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(-45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(-45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(-45deg); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn-prev:hover {
+            background: #e0e0e0;
+            transform: translateX(-3px);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-next:hover {
+            transform: translateX(3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .result {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mbti-type {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+            animation: bounce 1s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        .type-description {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(118, 75, 162, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .title {
+                font-size: 2em;
+            }
+
+            .question {
+                font-size: 1.1em;
+            }
+
+            .option {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+  <a href="index.html" class="back-to-portfolio">← 포트폴리오로 돌아가기</a>
+    <div class="container">
+        <div id="test-content">
+            <h1 class="title">💫 MZ MBTI 테스트</h1>
+            <p class="subtitle">나의 진짜 성격을 찾아보자! 솔직하게 답변해주세요 ✨</p>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="question-card" id="question-card">
+                <div class="question" id="question"></div>
+                <div class="options" id="options"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-prev" id="prev-btn" onclick="prevQuestion()">← 이전</button>
+                <button class="btn btn-next" id="next-btn" onclick="nextQuestion()" disabled>다음 →</button>
+            </div>
+        </div>
+
+        <div id="result-content" class="result hidden">
+            <h2 class="title">🎉 결과 발표!</h2>
+            <div class="mbti-type" id="mbti-result"></div>
+            <div class="type-description" id="type-description"></div>
+            <button class="restart-btn" onclick="restartTest()">다시 테스트하기 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "주말에 친구가 갑자기 놀자고 할 때 나는?",
+                options: [
+                    { text: "좋아! 바로 나간다 🏃‍♀️", type: "E" },
+                    { text: "음... 집에서 넷플릭스 보고 싶은데 😅", type: "I" }
+                ]
+            },
+            {
+                question: "인스타 스토리에 올릴 사진을 고를 때?",
+                options: [
+                    { text: "지금 당장의 분위기가 느껴지는 걸로!", type: "S" },
+                    { text: "의미있고 예술적인 느낌으로 ✨", type: "N" }
+                ]
+            },
+            {
+                question: "친구가 연애 고민을 털어놓을 때?",
+                options: [
+                    { text: "객관적으로 분석해서 조언해준다", type: "T" },
+                    { text: "일단 공감하고 위로해준다 🤗", type: "F" }
+                ]
+            },
+            {
+                question: "여행 계획을 세울 때?",
+                options: [
+                    { text: "일정표 만들고 예약까지 완벽하게!", type: "J" },
+                    { text: "그때그때 느낌대로 가자 🛫", type: "P" }
+                ]
+            },
+            {
+                question: "새로운 사람들과 있을 때?",
+                options: [
+                    { text: "먼저 말 걸고 분위기 메이커 역할", type: "E" },
+                    { text: "조용히 관찰하다가 천천히 친해짐", type: "I" }
+                ]
+            },
+            {
+                question: "유튜브 알고리즘이 추천해주는 영상?",
+                options: [
+                    { text: "실용적이고 도움되는 콘텐츠 위주", type: "S" },
+                    { text: "철학적이고 깊은 생각하게 하는 것들", type: "N" }
+                ]
+            },
+            {
+                question: "친구와 의견이 다를 때?",
+                options: [
+                    { text: "논리적으로 설득하려고 함", type: "T" },
+                    { text: "상대방 기분 상하지 않게 조심스럽게", type: "F" }
+                ]
+            },
+            {
+                question: "데드라인이 있는 과제나 업무?",
+                options: [
+                    { text: "미리미리 계획 세워서 차근차근", type: "J" },
+                    { text: "마감 직전에 집중력 폭발! 💥", type: "P" }
+                ]
+            },
+            {
+                question: "카페에서 혼자 있을 때?",
+                options: [
+                    { text: "주변 사람들과 자연스럽게 대화", type: "E" },
+                    { text: "책 읽거나 폰 보며 나만의 시간", type: "I" }
+                ]
+            },
+            {
+                question: "SNS 피드를 볼 때 관심 있는 게시물은?",
+                options: [
+                    { text: "일상 브이로그, 맛집 정보 등 현실적인 것들", type: "S" },
+                    { text: "심리테스트, 명언, 영감을 주는 콘텐츠", type: "N" }
+                ]
+            },
+            {
+                question: "조별과제에서 갈등이 생겼을 때?",
+                options: [
+                    { text: "문제점을 명확히 지적하고 해결책 제시", type: "T" },
+                    { text: "모두의 감정을 고려해서 중재하려고 함", type: "F" }
+                ]
+            },
+            {
+                question: "취미생활을 선택할 때?",
+                options: [
+                    { text: "체계적으로 배워서 마스터하고 싶음", type: "J" },
+                    { text: "재미있을 것 같으면 일단 시작! 🎯", type: "P" }
+                ]
+            }
+        ];
+
+        const mbtiTypes = {
+            "INTJ": {
+                name: "건축가형",
+                description: "전략적이고 독창적인 사고를 하는 완벽주의자. 혼자만의 시간을 즐기고 큰 그림을 그리는 것을 좋아해요. 넷플릭스 정주행의 신! 📚"
+            },
+            "INTP": {
+                name: "논리술사형", 
+                description: "창의적이고 호기심 많은 사색가. 새로운 아이디어에 열정적이고 독립적이에요. 유튜브 철학 채널의 단골 시청자! 🧠"
+            },
+            "ENTJ": {
+                name: "통솔자형",
+                description: "카리스마 있고 목표지향적인 리더. 효율성을 추구하고 큰 꿈을 실현시키는 능력자예요. 스타트업 CEO 스타일! 👑"
+            },
+            "ENTP": {
+                name: "변론가형",
+                description: "재치있고 영감을 주는 혁신가. 새로운 가능성을 탐구하고 토론을 즐겨요. 밈 제조기이자 아이디어 뱅크! 💡"
+            },
+            "INFJ": {
+                name: "옹호자형",
+                description: "이상주의적이고 창의적인 완벽주의자. 깊은 통찰력으로 사람들을 이해해요. 감성 글쟁이의 대표주자! ✍️"
+            },
+            "INFP": {
+                name: "중재자형",
+                description: "열정적이고 독창적인 자유로운 영혼. 자신의 가치관을 소중히 여기고 예술적 감각이 뛰어나요. 인스타 감성 사진의 장인! 🌙"
+            },
+            "ENFJ": {
+                name: "선도자형",
+                description: "카리스마 있고 영감을 주는 리더. 사람들의 잠재력을 발견하고 이끌어내는 천재예요. 단체 톡방의 분위기 메이커! 🌟"
+            },
+            "ENFP": {
+                name: "활동가형",
+                description: "열정적이고 창의적인 자유로운 영혼. 사람들과의 깊은 관계를 중시하고 새로운 경험을 좋아해요. 페스티벌의 마스코트! 🎪"
+            },
+            "ISTJ": {
+                name: "논리주의자형",
+                description: "실용적이고 신뢰할 수 있는 성실한 사람. 전통을 중시하고 체계적으로 일해요. 플래너 꾸미기의 달인! 📋"
+            },
+            "ISFJ": {
+                name: "수호자형",
+                description: "따뜻하고 배려심 많은 보호자. 다른 사람의 감정에 민감하고 헌신적이에요. 친구들의 비밀 상담소! 🤗"
+            },
+            "ESTJ": {
+                name: "경영자형",
+                description: "실용적이고 현실적인 관리자. 질서를 좋아하고 효율적으로 목표를 달성해요. 조별과제의 팀장감! 📊"
+            },
+            "ESFJ": {
+                name: "집정관형",
+                description: "사교적이고 협조적인 조화로운 사람. 다른 사람을 돕는 것을 좋아하고 인기가 많아요. SNS 소통의 여왕/왕! 👑"
+            },
+            "ISTP": {
+                name: "만능재주꾼형",
+                description: "실용적이고 현실적인 문제 해결사. 손재주가 좋고 순간의 변화에 잘 적응해요. 유튜브 DIY의 고수! 🔧"
+            },
+            "ISFP": {
+                name: "모험가형",
+                description: "온화하고 겸손한 예술가. 아름다운 것들을 사랑하고 자신만의 속도로 살아가요. 빈티지 감성의 대가! 🎨"
+            },
+            "ESTP": {
+                name: "사업가형",
+                description: "활동적이고 현실적인 행동파. 즉흥적이고 사람들과 어울리는 것을 좋아해요. 파티의 라이프! 🎉"
+            },
+            "ESFP": {
+                name: "연예인형",
+                description: "자유분방하고 따뜻한 엔터테이너. 삶을 즐기고 다른 사람들에게 기쁨을 줘요. 틱톡 스타의 자질! 💃"
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = [];
+        let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('question').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option.text;
+                optionElement.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionElement);
+            });
+
+            updateProgress();
+            updateButtons();
+        }
+
+        function selectOption(index) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            answers[currentQuestion] = index;
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function updateButtons() {
+            document.getElementById('prev-btn').style.display = currentQuestion === 0 ? 'none' : 'block';
+            document.getElementById('next-btn').textContent = currentQuestion === questions.length - 1 ? '결과 보기! 🎯' : '다음 →';
+            document.getElementById('next-btn').disabled = answers[currentQuestion] === undefined;
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) return;
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function calculateResult() {
+            // 점수 계산
+            questions.forEach((question, index) => {
+                if (answers[index] !== undefined) {
+                    const selectedType = question.options[answers[index]].type;
+                    scores[selectedType]++;
+                }
+            });
+
+            // MBTI 타입 결정
+            const mbtiType = 
+                (scores.E >= scores.I ? 'E' : 'I') +
+                (scores.S >= scores.N ? 'S' : 'N') +
+                (scores.T >= scores.F ? 'T' : 'F') +
+                (scores.J >= scores.P ? 'J' : 'P');
+
+            showResult(mbtiType);
+        }
+
+        function showResult(type) {
+            document.getElementById('test-content').classList.add('hidden');
+            document.getElementById('result-content').classList.remove('hidden');
+            document.getElementById('mbti-result').textContent = type;
+            document.getElementById('type-description').innerHTML = 
+                `<strong>${mbtiTypes[type].name}</strong><br><br>${mbtiTypes[type].description}`;
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = [];
+            scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+            
+            document.getElementById('result-content').classList.add('hidden');
+            document.getElementById('test-content').classList.remove('hidden');
+            
+            showQuestion();
+        }
+
+        // 초기 로드
+        showQuestion();
+    </script>
+</body>
+</html>
