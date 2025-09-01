@@ -12,9 +12,12 @@
 - HTML5, CSS3, JavaScript
 - GitHub Pages
 
-## 🌐 Live Demo
-[포트폴리오 보기](https://jiminxchris.github.io/portfolio)
-[MBTI 테스트](https://jiminxchris.github.io/portfolio/mbti-test.html)
+## 🌐 라이브 데모
+- 메인: https://jiminxchris.github.io/portfolio
+- 블로그: https://jiminxchris.github.io/portfolio/blog.html
+- 이력서: https://jiminxchris.github.io/portfolio/resume.html
+- 연락처: https://jiminxchris.github.io/portfolio/contact.html
+- MBTI: https://jiminxchris.github.io/portfolio/mbti-test.html
 
 ## 📞 Contact
 - Email: jiminxchris@gmail.com
