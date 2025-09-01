@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AI & Full Stack Developer</title>
+    <meta name="description" content="AI 개발자와 연락하기 - 프로젝트 문의 및 협업 제안">
+    <meta name="keywords" content="연락처, 프로젝트문의, AI개발자, 협업">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .back-to-portfolio {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .form-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .info-section {
+            margin-bottom: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .info-content h4 {
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-content p {
+            color: #666;
+            margin: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .success-message,
+        .error-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .availability {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .availability-status {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .response-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .faq-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #667eea;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #5a67d8;
+        }
+
+        .faq-answer {
+            color: #666;
+            margin-top: 0.5rem;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .back-to-portfolio {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-to-portfolio">← 포트폴리오로 돌아가기</a>
+            <h1>📞 Contact Me</h1>
+            <p>프로젝트 문의, 협업 제안, 강의 요청 등 언제든 연락주세요!</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2 class="form-title">메시지 보내기</h2>
+                <p class="form-subtitle">아래 양식을 작성해주시면 최대한 빠르게 답변드리겠습니다.</p>
+                
+                <div class="success-message" id="successMessage">
+                    ✅ 메시지가 성공적으로 전송되었습니다! 빠른 시일 내에 답변드리겠습니다.
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    ❌ 메시지 전송 중 오류가 발생했습니다. 직접 이메일로 연락해주세요.
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">이름 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">회사/기관</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">이메일 *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">연락처</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inquiry-type">문의 유형 *</label>
+                        <select id="inquiry-type" name="inquiryType" required>
+                            <option value="">문의 유형을 선택해주세요</option>
+                            <option value="project">프로젝트 협업</option>
+                            <option value="consulting">기술 컨설팅</option>
+                            <option value="lecture">강의 요청</option>
+                            <option value="development">개발 의뢰</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">제목 *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">메시지 *</label>
+                        <textarea id="message" name="message" placeholder="프로젝트의 상세한 내용, 예산, 일정 등을 포함하여 작성해주세요." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">예상 예산</label>
+                        <select id="budget" name="budget">
+                            <option value="">예산을 선택해주세요</option>
+                            <option value="under-100">100만원 미만</option>
+                            <option value="100-500">100만원 - 500만원</option>
+                            <option value="500-1000">500만원 - 1000만원</option>
+                            <option value="over-1000">1000만원 이상</option>
+                            <option value="discuss">협의 가능</option>
+                        </select>
+                    </div>
+
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        전송 중...
+                    </div>
+
+                    <button type="submit" class="submit-button" id="submitButton">
+                        메시지 보내기 📨
+                    </button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <div class="availability">
+                    <div class="availability-status">🟢 현재 새로운 프로젝트 수락 중</div>
+                    <div class="response-time">평균 응답 시간: 24시간 이내</div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-title">📍 연락처 정보</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <h4>이메일</h4>
+                            <p>developer@email.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📱</div>
+                        <div class="info-content">
+                            <h4>전화</h4>
+                            <p>010-1234-5678</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>위치</h4>
+                            <p>서울, 대한민국</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-content">
+                            <h4>업무시간</h4>
+                            <p>월-금 09:00-18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-title">🔗 소셜 미디어</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="GitHub">🐙</a>
+                        <a href="#" class="social-link" title="LinkedIn">💼</a>
+                        <a href="#" class="social-link" title="Twitter">🐦</a>
+                        <a href="#" class="social-link" title="Blog">📝</a>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-title">💡 전문 분야</h3>
+                    <ul style="color: #666; line-height: 1.8;">
+                        <li>• AI/ML 모델 개발 및 최적화</li>
+                        <li>• 풀스택 웹 애플리케이션 개발</li>
+                        <li>• 임베디드 시스템 개발</li>
+                        <li>• 데이터 분석 및 시각화</li>
+                        <li>• 기술 교육 및 컨설팅</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="faq-title">자주 묻는 질문</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    프로젝트 진행 프로세스는 어떻게 되나요?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    1. 초기 상담 및 요구사항 분석 → 2. 제안서 및 견적 제출 → 3. 계약 체결 → 4. 개발 진행 (주간 보고) → 5. 테스트 및 배포 → 6. 유지보수 지원
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    프로젝트 예산은 어떻게 책정되나요?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    프로젝트의 복잡도, 개발 기간, 필요한 기술 스택 등을 종합적으로 고려하여 견적을 산출합니다. 작은 규모의 프로토타입부터 대규모 시스템까지 다양한 예산대에서 진행 가능합니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    개발 완료 후 유지보수도 가능한가요?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    네, 개발 완료 후에도 지속적인 유지보수와 기능 추가 개발을 제공합니다. 월 단위 유지보수 계약이나 건별 수정 작업 모두 가능합니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    강의나 교육 프로그램은 어떤 것들이 있나요?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    AI/ML 기초부터 고급 과정, 풀스택 개발, 임베디드 시스템 등 다양한 주제로 강의를 진행합니다. 기업 교육, 개인 과외, 온라인 강의 모두 가능합니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    원격 작업이 가능한가요?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    네, 대부분의 프로젝트는 원격으로 진행 가능합니다. 필요시 화상 회의를 통한 정기적인 소통과 진행상황 공유를 통해 효율적으로 협업합니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // 메시지 숨기기
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // 로딩 상태
+            submitButton.disabled = true;
+            loading.style.display = 'block';
+            
+            // 실제 환경에서는 여기에 서버로 데이터를 전송하는 코드가 들어갑니다.
+            // 예시로 2초 후 성공 메시지를 표시합니다.
+            setTimeout(() => {
+                loading.style.display = 'none';
+                submitButton.disabled = false;
+                
+                // 폼 데이터 수집
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // 간단한 유효성 검사
+                if (data.name && data.email && data.subject && data.message) {
+                    successMessage.style.display = 'block';
+                    this.reset(); // 폼 초기화
+                    
+                    // 성공 메시지 위치로 스크롤
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    errorMessage.style.display = 'block';
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 2000);
+        });
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // 다른 활성화된 FAQ 닫기
+                document.querySelectorAll('.faq-answer.active').forEach(activeAnswer => {
+                    activeAnswer.classList.remove('active');
+                    activeAnswer.previousElementSibling.querySelector('span').textContent = '+';
+                });
+                
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // 실시간 폼 유효성 검사
+        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.borderColor = '#dc3545';
+                } else {
+                    this.style.borderColor = '#28a745';
+                }
+            });
+        });
+
+        // 이메일 유효성 검사
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value)) {
+                this.style.borderColor = '#dc3545';
+            } else {
+                this.style.borderColor = '#28a745';
+            }
+        });
+    </script>
+</body>
+</html> {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-button
