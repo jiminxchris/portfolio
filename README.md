@@ -18,6 +18,7 @@
 - 이력서: https://jiminxchris.github.io/portfolio/resume.html
 - 연락처: https://jiminxchris.github.io/portfolio/contact.html
 - MBTI: https://jiminxchris.github.io/portfolio/mbti-test.html
+- 테트리스게임: https://jiminxchris.github.io/portfolio/tetris.html
 
 ## 📞 Contact
 - Email: jiminxchris@gmail.com
