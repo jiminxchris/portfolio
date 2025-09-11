@@ -24,6 +24,7 @@
 - 테트리스게임: https://jiminxchris.github.io/portfolio/tetris.html
 - 데이터분석 대시보드: https://ml-practice-databoard.streamlit.app/
 - 이미지생성가능 보드: https://huggingface.co/spaces/chris4jimin/testApp
+- 스프레드시트를 DB로 사용하는 방명록: https://testapps-guestbook.streamlit.app/
   
 
 ## 📞 Contact
