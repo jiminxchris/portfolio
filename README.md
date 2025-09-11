@@ -9,8 +9,10 @@
 - 모바일 최적화
 
 ## 🛠️ Tech Stack
-- HTML5, CSS3, JavaScript
-- GitHub Pages
+- AI, ML, DL
+- Frontend
+- Backend
+- PostgresSQL
 
 ## 🌐 라이브 데모
 - 메인: https://jiminxchris.github.io/portfolio
