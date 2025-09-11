@@ -13,6 +13,7 @@
 - Frontend
 - Backend
 - PostgresSQL
+- NLP, Vision, LLM
 
 ## 🌐 라이브 데모
 - 메인: https://jiminxchris.github.io/portfolio
