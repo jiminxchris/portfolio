@@ -25,7 +25,8 @@
 - 데이터분석 대시보드: https://ml-practice-databoard.streamlit.app/
 - 이미지생성가능 보드: https://huggingface.co/spaces/chris4jimin/testApp
 - 스프레드시트를 DB로 사용하는 방명록: https://testapps-guestbook.streamlit.app/
-- <a href="https://google.com" target="_blank" rel="noopener noreferrer">Google</a>
+- [링크 텍스트](https://google.com){:target="_blank"}
+
   
 
 ## 📞 Contact
