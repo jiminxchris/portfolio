@@ -16,7 +16,7 @@
 - NLP, Vision, LLM
 
 ## 🌐 라이브 데모
-- <a href="https://jiminxchris.github.io/portfolio" target="_blank">포트폴리오 메인:</a> https://jiminxchris.github.io/portfolio
+- 포트폴리오 메인: https://jiminxchris.github.io/portfolio
 - 블로그: https://jiminxchris.github.io/portfolio/blog.html
 - 이력서: https://jiminxchris.github.io/portfolio/resume.html
 - 연락처: https://jiminxchris.github.io/portfolio/contact.html
@@ -25,6 +25,7 @@
 - 데이터분석 대시보드: https://ml-practice-databoard.streamlit.app/
 - 이미지생성가능 보드: https://huggingface.co/spaces/chris4jimin/testApp
 - 스프레드시트를 DB로 사용하는 방명록: https://testapps-guestbook.streamlit.app/
+- <a href="https://www.google.com" target="_blank">Google 바로가기</a>
   
 
 ## 📞 Contact
