@@ -16,7 +16,7 @@
 - NLP, Vision, LLM
 
 ## 🌐 라이브 데모
-- 메인: https://jiminxchris.github.io/portfolio
+- <a href="https://jiminxchris.github.io/portfolio" target="_blank">포트폴리오 메인:</a> https://jiminxchris.github.io/portfolio
 - 블로그: https://jiminxchris.github.io/portfolio/blog.html
 - 이력서: https://jiminxchris.github.io/portfolio/resume.html
 - 연락처: https://jiminxchris.github.io/portfolio/contact.html
