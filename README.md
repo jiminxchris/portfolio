@@ -30,3 +30,6 @@
 ## 📞 Contact
 - Email: jiminxchris@gmail.com
 - GitHub: https://github.com/jiminxchris/
+- ㅁㄴㅇㄹ
+
+![My Awesome Project Logo](logo.png)
